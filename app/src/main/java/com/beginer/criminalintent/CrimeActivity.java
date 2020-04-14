@@ -1,14 +1,10 @@
 package com.beginer.criminalintent;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Bundle;
-
-public class CrimeActivity extends AppCompatActivity {
+import androidx.fragment.app.Fragment;
+public class CrimeActivity extends SingleFragmentActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_crime);
+    protected Fragment createFragment(){
+        return new CrimeFragment();
     }
 }
