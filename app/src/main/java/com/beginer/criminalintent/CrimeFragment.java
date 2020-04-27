@@ -13,6 +13,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import java.util.UUID;
 
@@ -25,6 +26,7 @@ public class CrimeFragment extends Fragment {
 
     private static final String ARG_CRIME_ID = "crime_id";
 
+    private static final String DIALOG_DATE = "DialogDate";
 
     public void returnResult(){
         getActivity().setResult(Activity.RESULT_OK, null);
@@ -72,7 +74,17 @@ public class CrimeFragment extends Fragment {
 
         mDateButton = (Button) v.findViewById(R.id.crime_date);
         mDateButton.setText(mCrime.getDate().toString());
-        mDateButton.setEnabled(false);
+        mDateButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getFragmentManager();
+                DatePickerFragment dialog = new DatePickerFragment();
+                if (fragmentManager != null) {
+                    dialog.show(fragmentManager, DIALOG_DATE);
+                }
+            }
+        });
 
         mSolvedCheckBox = (CheckBox) v.findViewById(R.id.crime_solved);
         mSolvedCheckBox.setChecked(mCrime.isSolved());
