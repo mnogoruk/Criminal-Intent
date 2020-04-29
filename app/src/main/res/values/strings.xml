@@ -8,4 +8,8 @@
     <string name="default_crime_date">Crime date</string>
     <string name="date_picker_title">Дата кражи:</string>
     <string name="time_picker_title">Время кражи:</string>
+    <string name="new_crime">Новой преступление</string>
+    <string name="show_subtitles">Показать заголовки</string>
+    <string name="hide_subtitles">Скрыть заголовки</string>
+    <string name="subtitle_format">%1$d преступлений</string>
 </resources>

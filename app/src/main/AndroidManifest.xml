@@ -11,7 +11,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".CrimePageActivity" />
+        <activity
+            android:name=".CrimePageActivity"
+            android:parentActivityName=".CrimeListActivity"
+            />
         <activity android:name=".CrimeListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,5 +23,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>
