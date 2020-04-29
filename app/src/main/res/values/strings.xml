@@ -7,4 +7,5 @@
     <string name="default_crime_title">Crime Title</string>
     <string name="default_crime_date">Crime date</string>
     <string name="date_picker_title">Дата кражи:</string>
+    <string name="time_picker_title">Время кражи:</string>
 </resources>

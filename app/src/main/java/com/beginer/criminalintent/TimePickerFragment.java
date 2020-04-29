@@ -8,7 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.DatePicker;
+import android.widget.TimePicker;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,33 +16,30 @@ import androidx.fragment.app.DialogFragment;
 
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 
-
-public class DatePickerFragment extends DialogFragment {
+public class TimePickerFragment extends DialogFragment {
 
     private static final String ARG_DATE = "date";
-    public static final String EXTRA_DATE = "com.beginer.criminalintent.date";
+    public static final String EXTRA_TIME = "com.beginer.criminalintent.time";
 
-    private DatePicker mDatePicker;
+    private TimePicker mTimePicker;
 
-    public static DatePickerFragment newInstance(Date date){
+    public static TimePickerFragment newInstance(Date data){
         Bundle args = new Bundle();
-        args.putSerializable(ARG_DATE, date);
+        args.putSerializable(ARG_DATE, data);
 
-        DatePickerFragment fragment = new DatePickerFragment();
+        TimePickerFragment fragment = new TimePickerFragment();
         fragment.setArguments(args);
         return fragment;
-
     }
-
 
     private void sendResult(int resultCode, Date date){
         if (getTargetFragment() == null) return;
         Intent intent = new Intent();
-        intent.putExtra(EXTRA_DATE, date);
+        intent.putExtra(EXTRA_TIME, date);
         getTargetFragment().onActivityResult(getTargetRequestCode(), resultCode, intent);
     }
+
 
     @NonNull
     @Override
@@ -52,31 +49,27 @@ public class DatePickerFragment extends DialogFragment {
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH);
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        int hour = calendar.get(Calendar.HOUR);
+        int minute = calendar.get(Calendar.MINUTE);
 
-        View v = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_date, null);
+        View v = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_time, null);
 
-        mDatePicker = (DatePicker) v.findViewById(R.id.dialog_date_picker);
-        mDatePicker.init(year, month, day, null);
-
+        mTimePicker = (TimePicker) v.findViewById(R.id.dialog_time_picker);
+        mTimePicker.setHour(hour);
+        mTimePicker.setMinute(minute);
 
         return new AlertDialog.Builder(getActivity())
-                .setTitle(R.string.date_picker_title)
+                .setTitle(R.string.time_picker_title)
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Date date = (Date) getArguments().getSerializable(ARG_DATE);
 
-                        int year = mDatePicker.getYear();
-                        int month = mDatePicker.getMonth();
-                        int day = mDatePicker.getDayOfMonth();
+                        int hour = mTimePicker.getHour();
+                        int minute = mTimePicker.getMinute();
 
-                        date.setYear(year);
-                        date.setMonth(month);
-                        date.setDate(day);
-
+                        date.setHours(hour);
+                        date.setMinutes(minute);
                         sendResult(Activity.RESULT_OK, date);
                     }
                 })
