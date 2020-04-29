@@ -40,7 +40,7 @@ public class Crime {
     public void setSolved(boolean solved) {
         mSolved = solved;
     }
-    public void setDAte(Date DAte) {
+    public void setDate(Date DAte) {
         mDate = DAte;
     }
 
